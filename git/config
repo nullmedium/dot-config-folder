@@ -1,0 +1,7 @@
+[user]
+    name = Jens Luedicke
+    email = jens@luedicke.me
+[core]
+    excludesfile = /Users/jens/.gitignore_global
+[init]
+    defaultBranch = master
