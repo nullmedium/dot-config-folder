@@ -4,3 +4,4 @@
 [submodule "emacs"]
 	path = emacs
 	url = git@github.com:nullmedium/emacs-config.git
+	branch = master
