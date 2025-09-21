@@ -5,6 +5,7 @@ decorations = "Full"
 opacity = 0.98
 startup_mode = "Windowed"
 dimensions = { columns = 140, lines = 45 }
+option_as_alt = "Both"
 
 [font]
 size = 16.0
@@ -57,7 +58,7 @@ bindings = [
     { key = "K", mods = "Alt", chars = "\u001bk" },
     { key = "L", mods = "Alt", chars = "\u001bl" },
     { key = "M", mods = "Alt", chars = "\u001bm" },
-    { key = "N", mods = "Alt", chars = "\u001bn" },
+    # { key = "N", mods = "Alt", chars = "\u001bn" },  # Commented out to allow Option-N for tilde on macOS
     { key = "O", mods = "Alt", chars = "\u001bo" },
     { key = "P", mods = "Alt", chars = "\u001bp" },
     { key = "Q", mods = "Alt", chars = "\u001bq" },
