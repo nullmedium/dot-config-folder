@@ -3,5 +3,6 @@
     email = jens@luedicke.me
 [core]
     excludesfile = /Users/jens/.gitignore_global
+	editor = o
 [init]
     defaultBranch = master
