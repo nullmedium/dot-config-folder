@@ -45,14 +45,14 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal with smart monitor/workspace-aware tmux sessions
-bindsym $mod+Return exec --no-startup-id /home/jens/.config/i3/smart-terminal.sh
+bindsym $mod+Return exec --no-startup-id $HOME/.config/i3/smart-terminal.sh
 
 # fallback simple terminal (without smart sessions)
-bindsym $mod+Shift+Return exec --no-startup-id /home/jens/.config/i3/simple-terminal.sh
+bindsym $mod+Shift+Return exec --no-startup-id $HOME/.config/i3/simple-terminal.sh
 
 # tmux session management keybindings
-bindsym $mod+Shift+t exec --no-startup-id /home/jens/.cargo/bin/alacritty -e /home/jens/.config/i3/tmux-session-manager.sh
-bindsym $mod+Control+t exec --no-startup-id /home/jens/.config/i3/tmux-session-manager.sh list | rofi -dmenu -p "Tmux Sessions" -width 60
+bindsym $mod+Shift+t exec --no-startup-id $HOME/.cargo/bin/alacritty -e $HOME/.config/i3/tmux-session-manager.sh
+bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/tmux-session-manager.sh list | rofi -dmenu -p "Tmux Sessions" -width 60
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -67,21 +67,21 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show run
 
 # Screenshot bindings
-bindsym Print exec --no-startup-id ~/.local/bin/screenshot.sh full
-bindsym Shift+Print exec --no-startup-id ~/.local/bin/screenshot.sh selection
-bindsym $mod+Print exec --no-startup-id ~/.local/bin/screenshot.sh window
-bindsym Control+Print exec --no-startup-id ~/.local/bin/screenshot.sh clipboard
-bindsym Control+Shift+Print exec --no-startup-id ~/.local/bin/screenshot.sh clipboard-selection
+bindsym Print exec --no-startup-id $HOME/.local/bin/screenshot.sh full
+bindsym Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot.sh selection
+bindsym $mod+Print exec --no-startup-id $HOME/.local/bin/screenshot.sh window
+bindsym Control+Print exec --no-startup-id $HOME/.local/bin/screenshot.sh clipboard
+bindsym Control+Shift+Print exec --no-startup-id $HOME/.local/bin/screenshot.sh clipboard-selection
 
 # Alternative screenshot bindings for keyboards that send different codes
-bindsym XF86ScreenSaver exec --no-startup-id ~/.local/bin/screenshot.sh full
-bindsym Shift+XF86ScreenSaver exec --no-startup-id ~/.local/bin/screenshot.sh selection
-bindsym $mod+XF86ScreenSaver exec --no-startup-id ~/.local/bin/screenshot.sh window
+bindsym XF86ScreenSaver exec --no-startup-id $HOME/.local/bin/screenshot.sh full
+bindsym Shift+XF86ScreenSaver exec --no-startup-id $HOME/.local/bin/screenshot.sh selection
+bindsym $mod+XF86ScreenSaver exec --no-startup-id $HOME/.local/bin/screenshot.sh window
 
 # Additional screenshot bindings with mod+s combinations
-bindsym $mod+Shift+s exec --no-startup-id ~/.local/bin/screenshot.sh selection
-bindsym $mod+Control+s exec --no-startup-id ~/.local/bin/screenshot.sh window
-bindsym $mod+Control+Shift+s exec --no-startup-id ~/.local/bin/screenshot.sh full
+bindsym $mod+Shift+s exec --no-startup-id $HOME/.local/bin/screenshot.sh selection
+bindsym $mod+Control+s exec --no-startup-id $HOME/.local/bin/screenshot.sh window
+bindsym $mod+Control+Shift+s exec --no-startup-id $HOME/.local/bin/screenshot.sh full
 
 # change focus
 bindsym $mod+j focus left
@@ -134,10 +134,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Wallpaper controls
-bindsym $mod+Shift+w exec --no-startup-id ~/.config/i3/wallpaper-rotate.sh --once
-bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/wallpaper-rotate.sh --category nature
+bindsym $mod+Shift+w exec --no-startup-id $HOME/.config/i3/wallpaper-rotate.sh --once
+bindsym $mod+Shift+n exec --no-startup-id $HOME/.config/i3/wallpaper-rotate.sh --category nature
 # bindsym $mod+Control+s exec --no-startup-id ~/.config/i3/wallpaper-rotate.sh --category space # Disabled - conflicts with screenshot binding
-bindsym $mod+Control+c exec --no-startup-id ~/.config/i3/wallpaper-rotate.sh --category cityscape
+bindsym $mod+Control+c exec --no-startup-id $HOME/.config/i3/wallpaper-rotate.sh --category cityscape
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -220,7 +220,7 @@ bar {
 bindsym Control+Mod1+l exec "i3lock -f -c 000000"
 
 # keybinding to manually trigger monitor setup
-bindsym $mod+Shift+m exec "/home/jenlue/.config/i3/monitor-setup.sh"
+bindsym $mod+Shift+m exec "$HOME/.config/i3/monitor-setup.sh"
 
 # Workspace assignments for multi-monitor setup
 # Primary monitor (laptop) - workspaces 1-4
