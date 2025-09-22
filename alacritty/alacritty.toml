@@ -2,7 +2,7 @@
 [window]
 padding = { x = 2, y = 2 }
 decorations = "Full"
-opacity = 0.98
+opacity = 0.90
 startup_mode = "Windowed"
 dimensions = { columns = 140, lines = 45 }
 option_as_alt = "Both"
@@ -11,19 +11,19 @@ option_as_alt = "Both"
 size = 16.0
 
 [font.normal]
-family = "Menlo"
+family = "0xProto Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "Menlo"
+family = "0xProto Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "Menlo"
+family = "0xProto Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "Menlo"
+family = "0xProto Nerd Font"
 style = "Bold Italic"
 
 # Colors are now managed by the theme import above
@@ -71,7 +71,7 @@ bindings = [
     { key = "X", mods = "Alt", chars = "\u001bx" },
     { key = "Y", mods = "Alt", chars = "\u001by" },
     { key = "Z", mods = "Alt", chars = "\u001bz" },
-    
+
     # Meta + special keys
     { key = "Left", mods = "Alt", chars = "\u001b[1;3D" },
     { key = "Right", mods = "Alt", chars = "\u001b[1;3C" },
@@ -79,7 +79,7 @@ bindings = [
     { key = "Down", mods = "Alt", chars = "\u001b[1;3B" },
     { key = "Back", mods = "Alt", chars = "\u001b\u007f" },
     { key = "Space", mods = "Alt", chars = "\u001b " },
-    
+
     # Common Emacs combinations
     { key = "Slash", mods = "Control", chars = "\u001f" },
     { key = "Period", mods = "Alt", chars = "\u001b." },
@@ -96,7 +96,7 @@ bindings = [
     { key = "Key8", mods = "Alt", chars = "\u001b8" },
     { key = "Key9", mods = "Alt", chars = "\u001b9" },
     { key = "Key0", mods = "Alt", chars = "\u001b0" },
-    
+
     # Function keys
     { key = "F1", chars = "\u001bOP" },
     { key = "F2", chars = "\u001bOQ" },
