@@ -132,4 +132,41 @@ TERM = "xterm-256color"
 # Alacritty configuration optimized for Emacs -nw
 
 # Theme import - change this to any theme from ~/.config/alacritty/themes/themes/
-import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
+# import = ["~/.config/alacritty/themes/themes/tokyo_night.toml"]
+
+
+
+# Copy the configuration below and add it to your
+# ~/.config/alacritty/alacritty.toml file
+
+# Colors (Root Loops)
+# via https://rootloops.sh?sugar=7&colors=6&sogginess=4&flavor=2&fruit=9&milk=0
+
+[colors.primary]
+background = '#050812'
+foreground = '#dde2f2'
+
+[colors.cursor]
+text = '#050812'
+cursor = '#acb8dc'
+
+[colors.normal]
+black = '#1a2137'
+red = '#d77c6e'
+green = '#66ab75'
+yellow = '#b0964e'
+blue = '#7f95db'
+magenta = '#c877c1'
+cyan = '#51a7b6'
+white = '#acb8dc'
+
+[colors.bright]
+black = '#424f7a'
+red = '#e4978a'
+green = '#79c289'
+yellow = '#c7ab60'
+blue = '#99ace5'
+magenta = '#d694d0'
+cyan = '#64becd'
+white = '#eef1f8'
+
