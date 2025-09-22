@@ -115,6 +115,10 @@ bindings = [
 [terminal]
 osc52 = "CopyPaste"  # Enable OSC 52 for clipboard support
 
+[terminal.shell]
+program = "/usr/bin/tmux"
+args = ["new-session", "-A", "-s", "main"]
+
 [scrolling]
 history = 10000
 multiplier = 3
