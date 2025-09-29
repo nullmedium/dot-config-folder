@@ -2,7 +2,7 @@
 [window]
 padding = { x = 2, y = 2 }
 decorations = "Full"
-opacity = 0.90
+opacity = 0.75
 startup_mode = "Windowed"
 dimensions = { columns = 140, lines = 45 }
 option_as_alt = "Both"
@@ -169,4 +169,3 @@ blue = '#99ace5'
 magenta = '#d694d0'
 cyan = '#64becd'
 white = '#eef1f8'
-

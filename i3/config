@@ -11,6 +11,15 @@
 
 set $mod Mod4
 
+# Color scheme for window borders (matches Root Loops theme)
+# class                 border  backgr. text    indicator child_border
+client.focused          #7f95db #7f95db #ffffff #c877c1   #7f95db
+client.focused_inactive #424f7a #424f7a #acb8dc #424f7a   #424f7a
+client.unfocused        #1a2137 #1a2137 #888888 #1a2137   #1a2137
+client.urgent           #d77c6e #d77c6e #ffffff #e4978a   #d77c6e
+client.placeholder      #050812 #050812 #dde2f2 #050812   #050812
+client.background       #050812
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
@@ -36,6 +45,35 @@ exec --no-startup-id nm-applet
 
 # Start picom compositor for transparency effects
 exec --no-startup-id picom -b
+
+# Gaps configuration (requires i3-gaps)
+gaps inner 10
+gaps outer 5
+smart_gaps on
+
+# Border styles for clean look
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class=".*"] border pixel 2
+
+# Window transparency rules (handled by picom instead)
+# for_window [class="Alacritty"] exec --no-startup-id picomm-trans -c 0.9
+# for_window [class="rofi"] exec --no-startup-id picom-trans -c 0.85
+
+# Floating window rules for better window management
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="Pavucontrol"] floating enable, resize set 800 600
+
+# Focus behavior and mouse settings
+focus_follows_mouse yes
+mouse_warping output
+
+# Workspace back-and-forth navigation
+workspace_auto_back_and_forth yes
+
+# Hide borders intelligently
+hide_edge_borders smart
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -67,7 +105,27 @@ bindsym $mod+Shift+q kill
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec rofi -show run
+
+# OLD ROFI CONFIG (commented out to use exek instead)
+# bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+
+# EXEK LAUNCHER - Fast TUI application launcher with fuzzy matching
+# Launch with Super+d (replaces rofi)
+bindsym $mod+d exec --no-startup-id $HOME/.cargo/bin/alacritty --class exek-launcher -e /usr/local/bin/exek
+
+# Window rules for exek launcher
+for_window [class="exek-launcher"] floating enable
+for_window [class="exek-launcher"] resize set 900 500
+for_window [class="exek-launcher"] move position center
+for_window [class="exek-launcher"] border pixel 3
+
+# Optional: Scratchpad launcher for quick access with Super+minus
+bindsym $mod+Shift+d exec --no-startup-id $HOME/.cargo/bin/alacritty --class exek-scratchpad -e /usr/local/bin/exek
+for_window [class="exek-scratchpad"] move scratchpad, resize set 900 500
+bindsym $mod+minus [class="exek-scratchpad"] scratchpad show, move position center
+
+# Keep rofi for window switching (works well for this)
+bindsym $mod+Tab exec rofi -show window
 
 # Screenshot bindings
 bindsym Print exec --no-startup-id $HOME/.local/bin/screenshot.sh full
@@ -249,4 +307,3 @@ workspace $ws9 output DVI-I-1-1
 workspace $ws10 output DVI-I-1-1
 
 # Fallback for any monitor if specific ones are disconnected (removed duplicates)
-
