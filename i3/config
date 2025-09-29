@@ -34,6 +34,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -f --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Start picom compositor for transparency effects
+exec --no-startup-id picom -b
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -151,6 +154,12 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# Mouse side button bindings for MX Master 3S
+# Button 8 (Back) - Focus next window
+bindsym --whole-window button8 focus next
+# Button 9 (Forward) - Focus previous window
+bindsym --whole-window button9 focus prev
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
