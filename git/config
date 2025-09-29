@@ -4,5 +4,8 @@
 [core]
     excludesfile = /Users/jens/.gitignore_global
 	editor = o
+	hooksPath = /home/jens/.config/git/hooks
 [init]
     defaultBranch = master
+[credential]
+	helper = store

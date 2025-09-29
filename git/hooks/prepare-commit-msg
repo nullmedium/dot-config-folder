@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# Git prepare-commit-msg hook
+# Automatically generates a formatted commit message showing added, modified, and deleted files
+#
+# To install: Copy this file to .git/hooks/prepare-commit-msg and make it executable
+# chmod +x .git/hooks/prepare-commit-msg
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Only run for regular commits (not merge, squash, message, etc.)
+# 'message' is used during rebase when applying existing commits
+case "$COMMIT_SOURCE" in
+  merge|squash|commit|message)
+    exit 0
+    ;;
+esac
+
+# Get the staged changes
+ADDED_FILES=$(git diff --cached --name-only --diff-filter=A)
+MODIFIED_FILES=$(git diff --cached --name-only --diff-filter=M)
+DELETED_FILES=$(git diff --cached --name-only --diff-filter=D)
+RENAMED_FILES=$(git diff --cached --name-only --diff-filter=R)
+COPIED_FILES=$(git diff --cached --name-only --diff-filter=C)
+
+ADDED_COUNT=$(echo "$ADDED_FILES" | grep -c . 2>/dev/null || echo 0)
+MODIFIED_COUNT=$(echo "$MODIFIED_FILES" | grep -c . 2>/dev/null || echo 0)
+DELETED_COUNT=$(echo "$DELETED_FILES" | grep -c . 2>/dev/null || echo 0)
+RENAMED_COUNT=$(echo "$RENAMED_FILES" | grep -c . 2>/dev/null || echo 0)
+COPIED_COUNT=$(echo "$COPIED_FILES" | grep -c . 2>/dev/null || echo 0)
+
+# If no staged changes, exit
+if [ $ADDED_COUNT -eq 0 ] && [ $MODIFIED_COUNT -eq 0 ] && [ $DELETED_COUNT -eq 0 ] && [ $RENAMED_COUNT -eq 0 ] && [ $COPIED_COUNT -eq 0 ]; then
+    exit 0
+fi
+
+# Create the commit message template
+{
+    echo "your commit message here"
+    echo ""
+
+    # Added files
+    if [ $ADDED_COUNT -gt 0 ]; then
+        echo "$ADDED_FILES" | sed 's/^/* added: /'
+        echo ""
+    fi
+
+    # Modified files
+    if [ $MODIFIED_COUNT -gt 0 ]; then
+        echo "$MODIFIED_FILES" | sed 's/^/* modified: /'
+        echo ""
+    fi
+
+    # Deleted files
+    if [ $DELETED_COUNT -gt 0 ]; then
+        echo "$DELETED_FILES" | sed 's/^/* deleted: /'
+        echo ""
+    fi
+
+    echo "# Diff stats:"
+    git diff --cached --stat | sed 's/^/# /'
+    echo ""
+
+} > "$COMMIT_MSG_FILE"

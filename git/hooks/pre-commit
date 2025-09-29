@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Pre-commit hook to check for trailing whitespace and missing newline at EOF
+
+# Exit on first error
+set -e
+
+# Color codes for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+errors_found=0
+
+# Get list of staged files
+staged_files=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -z "$staged_files" ]; then
+    exit 0
+fi
+
+# Check for trailing whitespace
+echo "Checking for trailing whitespace..."
+for file in $staged_files; do
+    if [ -f "$file" ]; then
+        # Check if file has trailing whitespace
+        if grep -q '[[:space:]]$' "$file"; then
+            echo "${RED}✗${NC} Trailing whitespace found in: $file"
+            # Show lines with trailing whitespace
+            grep -n '[[:space:]]$' "$file" | while IFS=: read -r line_num line_content; do
+                echo "  Line $line_num: '${line_content}'"
+            done
+            errors_found=1
+        fi
+    fi
+done
+
+# Check for missing newline at end of file
+echo "Checking for newline at end of files..."
+for file in $staged_files; do
+    if [ -f "$file" ]; then
+        # Check if file ends with a newline
+        if [ -n "$(tail -c 1 "$file")" ]; then
+            echo "${RED}✗${NC} Missing newline at end of file: $file"
+            errors_found=1
+        fi
+    fi
+done
+
+# Report results
+if [ $errors_found -eq 0 ]; then
+    echo "${GREEN}✓${NC} All checks passed!"
+    exit 0
+else
+    echo ""
+    echo "${RED}Pre-commit checks failed!${NC}"
+    echo "Please fix the issues above and try again."
+    echo ""
+    echo "To fix trailing whitespace, you can use:"
+    echo "  sed -i 's/[[:space:]]*$//' <filename>"
+    echo ""
+    echo "To add missing newline at EOF, you can use:"
+    echo "  echo >> <filename>"
+    exit 1
+fi
